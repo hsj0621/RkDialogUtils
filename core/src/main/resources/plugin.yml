@@ -1,0 +1,9 @@
+name: RkDialogUtil
+version: ${version}
+main: me.rukon0621.dialog.RkDialogPlugin
+api-version: '1.21'
+author: rukon0621
+commands:
+  rkdialogexample:
+    description: Opens an example RkDialogUtil dialog.
+    usage: /rkdialogexample [merchant|advanced|settings]

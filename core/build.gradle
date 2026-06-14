@@ -1,0 +1,13 @@
+dependencies {
+    implementation project(':api')
+}
+
+tasks {
+    processResources {
+        filteringCharset = 'UTF-8'
+        filesMatching('plugin.yml') {
+            expand(version: project.version)
+        }
+    }
+
+}
