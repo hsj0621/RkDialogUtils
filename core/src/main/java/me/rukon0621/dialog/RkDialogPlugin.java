@@ -1,26 +1,36 @@
 package me.rukon0621.dialog;
 
-import lombok.Getter;
+import me.rukon0621.dialog.api.Dialog;
 import me.rukon0621.dialog.api.RkDialogAPI;
 import me.rukon0621.dialog.core.command.ExampleDialogCommand;
-import me.rukon0621.dialog.core.RkDialogAPIImpl;
-import org.bukkit.plugin.java.JavaPlugin;
+import me.rukon0621.dialog.core.render.PaperDialogRenderer;
+import org.bukkit.entity.Player;
 
 import java.util.Objects;
 
-public final class RkDialogPlugin extends JavaPlugin {
+public final class RkDialogPlugin extends RkDialogAPI {
 
-    @Getter
-    private static RkDialogAPI API;
+
+    public RkDialogPlugin() {
+        inst = this;
+    }
 
     @Override
     public void onEnable() {
-        API = new RkDialogAPIImpl();
         Objects.requireNonNull(getCommand("rkdialogexample")).setExecutor(new ExampleDialogCommand());
     }
 
     @Override
     public void onDisable() {
-        API = null;
+    }
+
+    private final PaperDialogRenderer renderer = new PaperDialogRenderer();
+
+    @Override
+    public void open(Player player, Dialog dialog) {
+        if (player == null || dialog == null) {
+            return;
+        }
+        player.showDialog(renderer.render(dialog));
     }
 }

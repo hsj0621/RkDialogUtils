@@ -26,7 +26,7 @@ public final class ExampleDialogCommand implements CommandExecutor {
             return true;
         }
 
-        RkDialogPlugin.getAPI().open(player, Dialog.builder()
+        RkDialogPlugin.getInst().open(player, Dialog.builder()
 
                         .input(DialogNumberRangeInput.builder()
                                 .label("<yellow>숫자 입력</yellow>")
